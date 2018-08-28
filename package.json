@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "bin": "app.js",
+    "scripts": {
+        "build": "node build.js",
+        "app": "nodemon app.js"
+    },
+    "dependencies": {
+        "ant-plus": "0.0.19",
+        "express": "^4.16.3",
+        "express-ws": "^4.0.0",
+        "serve-index": "^1.9.1"
+    },
+    "devDependencies": {
+        "fs-extra": "^7.0.0",
+        "pkg": "^4.3.4"
+    }
+}
