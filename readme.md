@@ -1,6 +1,8 @@
 # Fit for Live
 
-A really simple little ANT+ heart-rate monitoring server intended for use in tools like OBS.
+A really simple little ANT+ heart-rate monitoring server intended for use with OSC.
+
+A previous version of this exposes a web interface to be used in OBS, see this by switching branches to `websocket-interface`!
 
 ## Requirements
 
@@ -14,11 +16,10 @@ A really simple little ANT+ heart-rate monitoring server intended for use in too
 4. Select your ANT+ device.
 5. Using the up/down arrows, choose the `WinUSB` driver and click install.
 6. Open `config.json` and adjust your settings.
-7. Double click `FitForLive.exe` to start!
-8. Use the address provided in the console to see what monitors are available.
+7. Double click `FitForLive.exe` to start broadcasting data!
 
-## Developing your own monitor
+## Learn more about OSC
 
-The entire `www` folder is served as static content to express, so any css, javascript, images, html are able to be easily handled.
+I use a tool called [Protokol](https://hexler.net/products/protokol) to see the messages that this tool outputs.
 
-**See `www/basic.html` for a minimal implementation example**
+[Here's the OSC website](http://opensoundcontrol.org/), a useful resource for any developer looking to play around with easy, quick data transmission that's time sensitive.
