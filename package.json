@@ -7,6 +7,7 @@
     },
     "dependencies": {
         "ant-plus": "0.0.19",
+        "osc": "^2.4.1",
         "usb": "^1.6.0"
     },
     "devDependencies": {

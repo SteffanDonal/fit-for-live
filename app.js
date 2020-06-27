@@ -1,13 +1,35 @@
 'use strict';
 
 const Ant = require('ant-plus');
+const osc = require('osc');
 
 const config = require(process.cwd() + '/config.json');
 
 
 // OSC Setup
+//FIXME: Strictly it is possible that the ANT+ stick could send data before the port is ready. #ProblemsForLater
 
+const oscPort = new osc.UDPPort(config.oscUDP);
+oscPort.on('ready', () => {
+    console.info('OSC Port ready!');
+});
+oscPort.open();
 
+function sendUpdate(beatsPerMinute, caloriesBurned) {
+    oscPort.send({
+        timeTag: osc.timeTag(),
+        packets: [
+            {
+                address: config.osc.bpmAddress,
+                args: [ { type: 'f', value: beatsPerMinute } ]
+            },
+            {
+                address: config.osc.caloriesAddress,
+                args: [ { type: 'f', value: caloriesBurned } ]
+            }
+        ]
+    });
+}
 
 
 // ANT+ setup
@@ -34,11 +56,7 @@ sensor.on('hbdata', function (data) {
 
     lastMeasurement = new Date();
 
-    /*sendUpdate({
-        beatsPerMinute: data.ComputedHeartRate,
-        caloriesBurned: calories,
-        date: lastMeasurement.getTime()
-    })*/
+    sendUpdate(data.ComputedHeartRate, calories);
 });
 
 stick.on('startup', function () {

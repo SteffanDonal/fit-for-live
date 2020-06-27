@@ -1,5 +1,14 @@
 {
-	"port": 3069,
+	"oscUDP": {
+		"localAddress": "0.0.0.0",
+		"remoteAddress": "127.0.0.1",
+		"remotePort": 3069
+	},
+
+	"osc": {
+		"bpmAddress": "/heartData/bpm",
+		"caloriesAddress": "/heartData/calories"
+	},
 
 	"antStickVersion": 3,
 
