@@ -5,9 +5,6 @@ console.info('Clearing old dist folder...');
 fs.ensureDirSync('./dist');
 fs.emptyDirSync('./dist');
 
-console.info('Copying static assets...');
-fs.copySync('./www', './dist/www');
-
 console.info('Copying config...');
 fs.copySync('./config.json', './dist/config.json');
 

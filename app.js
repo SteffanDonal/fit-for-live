@@ -1,41 +1,13 @@
 'use strict';
 
-const express = require('express');
-const expressWs = require('express-ws');
-const serveIndex = require('serve-index');
 const Ant = require('ant-plus');
 
 const config = require(process.cwd() + '/config.json');
 
 
-// Web & Websocket server setup
+// OSC Setup
 
-const consumerSockets = [];
 
-const app = express();
-expressWs(app);
-
-app.use(express.static('www'), serveIndex('www', { icons: true }));
-app.ws('/', (ws, request) => {
-    consumerSockets.push(ws);
-
-    ws.on('close', () => consumerSockets.splice(consumerSockets.indexOf(ws), 1));
-});
-
-app.listen(config.port);
-console.log();
-console.log('Server running on port ' + config.port);
-console.log('Navigate to http://localhost:' + config.port + '/ to see available monitors.');
-console.log();
-
-function sendUpdate(data) {
-    var i,
-        dataString = JSON.stringify(data);
-
-    for (i = 0; i < consumerSockets.length; i += 1) {
-        consumerSockets[i].send(dataString);
-    }
-}
 
 
 // ANT+ setup
@@ -62,11 +34,11 @@ sensor.on('hbdata', function (data) {
 
     lastMeasurement = new Date();
 
-    sendUpdate({
+    /*sendUpdate({
         beatsPerMinute: data.ComputedHeartRate,
         caloriesBurned: calories,
         date: lastMeasurement.getTime()
-    })
+    })*/
 });
 
 stick.on('startup', function () {
